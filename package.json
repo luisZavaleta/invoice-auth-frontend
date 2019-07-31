@@ -17,6 +17,7 @@
     "extends": "react-app"
   },
   "proxy": "http://auth-app:8080",
+  "test:ci": "react-scripts test --no-watchman",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -30,3 +31,4 @@
     ]
   }
 }
+

@@ -27,7 +27,8 @@ withPod {
          			sh("npm install")
          			sh("npm install react-scripts@3.0.1 -g")
             		sh("npm test -- --watchAll=false")
-        		}
+            		sh("echo 'hola'")        		
+            	}
     		}
  		}
 

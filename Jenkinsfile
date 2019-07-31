@@ -24,6 +24,8 @@ withPod {
 
     		stage('Test React App') {
          		container('node') {
+         			sh("npm install")
+         			sh("npm install react-scripts@3.0.1 -g")
             		sh("npm test -- --watchAll=false")
         		}
     		}

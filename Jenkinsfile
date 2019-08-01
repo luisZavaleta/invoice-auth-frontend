@@ -44,8 +44,21 @@ withPod {
               sh("docker stop invoice-auth-frontend-test")
               sh("docker rm invoice-auth-frontend-test")
             }
- 		   }
 
+
+            stage('Publish') {
+              withDockerRegistry(registry: [credentialsId:'dockerhub']){
+                sh("docker tag ${service} ${service}")
+                sh("docker push ${service}")
+              }
+            }
+
+            def deploy = load('deploy.groovy')
+
+            stage('Deploy to testenv') {
+              deploy.toKubernetes(service, 'testenv')
+            }
+ 		   }
     }
 }
 

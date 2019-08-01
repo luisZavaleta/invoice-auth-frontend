@@ -13,24 +13,50 @@ def withPod(body) {
 
 
 withPod {
-	node('pod') {
+    node('pod') {
 
-    	def tag = "${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
-    	def service = "luiszavaleta/invoice-auth-frontend:${tag}"
+    	 def tag = "${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+    	 def service = "luiszavaleta/invoice-auth-frontend:${tag}"
 
-    	checkout scm
+    	 checkout scm
 
-   		container('docker') {
+   		 container('docker') {
 
-    		stage('Test React App') {
-         		container('node') {
-         			sh("npm install")
-         			sh("npm install react-scripts@3.0.1 -g")
-            		sh("CI=true npm test")
-            		sh("echo 'hola'")        		
-            	}
-    		}
- 		}
+        	 stage('Test React App') {
+             		container('node') {
+             			  sh("npm install")
+             			  sh("npm install react-scripts@3.0.1 -g")
+                		sh("CI=true npm test")
+                		sh("echo 'hola'")        		
+                }
+        		}
 
-  	}
+
+            stage('Build Image'){
+              sh("docker build -t ${service}  .")
+            }
+
+            stage('Run Image'){
+              sh("docker ps")
+              sh("docker stop invoice-auth-frontend-test || true")
+              sh("docker rm invoice-auth-frontend-test || true")
+              sh("docker run -d --name invoice-auth-frontend-test ${service}")
+              sh("docker stop invoice-auth-frontend-test")
+              sh("docker rm invoice-auth-frontend-test")
+            }
+ 		   }
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+

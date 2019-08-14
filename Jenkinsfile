@@ -16,7 +16,7 @@ withPod {
     node('pod') {
 
     	 def tag = "${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
-    	 def service = "luiszavaleta/invoice-auth-frontend:${tag}"
+    	 def service = "luiszavaleta/auth-frontend:${tag}"
 
     	 checkout scm
 

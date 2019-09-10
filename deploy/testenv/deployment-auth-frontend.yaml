@@ -4,7 +4,7 @@ apiVersion: extensions/v1beta1
 metadata:
   name: auth-frontend
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
    type: RollingUpdate
    rollingUpdate:

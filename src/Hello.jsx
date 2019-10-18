@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
+import  {Component} from 'react';
+
 
 
 var xhr;
 class Hello extends Component{
-	
+	/*
   constructor(props){
     super(props);
 
@@ -41,7 +42,6 @@ class Hello extends Component{
     }
   }
 
-
    
 
 
@@ -54,8 +54,18 @@ class Hello extends Component{
     		</div>
   		);
 	}
+  */
+
+  render(){
+    return("<div>Hello</div>");
+  }
 }
 
 
 
 export default Hello;
+
+
+
+
+

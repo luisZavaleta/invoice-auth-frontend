@@ -110,13 +110,14 @@ class SignIn extends Component{
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={this.props.signup}
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
-                Already have an account? Sign in
+                Already have an account? Sign in 
               </Link>
             </Grid>
           </Grid>

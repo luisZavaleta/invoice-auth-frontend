@@ -7,7 +7,7 @@ import './index.css';
 import 'typeface-roboto';
 
 
-import Main from "./components/base/Main"
+import Main from "./components/Main"
 
 import * as serviceWorker from './serviceWorker';
 

@@ -11,8 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { singInStyles } from './styles';
-import Copyright from "./Copyright"
+import { singInStyles } from '../commons/styles';
+import Copyright from "../commons/Copyright"
 
 
 

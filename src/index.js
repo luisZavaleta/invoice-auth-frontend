@@ -1,15 +1,26 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import {createStore} from "redux";
+import {Provider} from "react-redux";
+import loginReducer from "./reducers/loginReducer"
 import './index.css';
 import 'typeface-roboto';
 
-import Hello from './Hello';
-import SignIn from'./SignIn'
-import Main from "./Main"
+
+import Main from "./components/base/Main"
 
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<Main />, document.getElementById('root'));
+var destination = document.getElementById('root');
+
+var store = createStore(loginReducer);
+
+ReactDOM.render(<Provider store={store}>
+					<Main />
+				</Provider>,
+				destination);
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

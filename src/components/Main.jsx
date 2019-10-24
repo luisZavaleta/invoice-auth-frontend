@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {Route, NavLink, Switch, BrowserRouter} from "react-router-dom";
+import {Route, Switch, BrowserRouter} from "react-router-dom";
 import SignIn from "./connected/SignInHOC";
 import Hello from "./base/Hello";
 import Container from '@material-ui/core/Container';
@@ -24,7 +24,6 @@ class Main extends Component{
 	}
 
 }
-
 
 
 export default Main;

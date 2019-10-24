@@ -1,3 +1,7 @@
+import {CREATE_USER} from '../actions/login-actions';
+import {createUser} from '../actions/login-actions';
+
+
 
 
 function loginReducer(state, action){
@@ -17,12 +21,19 @@ function loginReducer(state, action){
 
 
 	switch(action.type){
+
+		case CREATE_USER:
+			alert("requesting signup. "+ action.user.name);
+			return{
+				user: state.user
+			};
+
 		case "login":
 			alert("Log In");
 			return{
 				user: state.user
-
 			};
+		
 		case "signup":
 			alert("Sign Up");
 			return{
@@ -30,7 +41,11 @@ function loginReducer(state, action){
 
 			};
 
+		default:
+			return state;
+
 	}
+
 }
 
 export default loginReducer;

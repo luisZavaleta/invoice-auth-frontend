@@ -12,8 +12,14 @@ import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { singInStyles } from '../commons/styles';
-import Copyright from "../commons/Copyright"
-import { createUser, createNewUser } from "../../actions/login-actions"
+import Copyright from "../commons/Copyright";
+import {  createUser,
+          createNewUser,
+          onFirstNameBlur,
+          onLastNameBlur,
+          onUserNameBlur,
+          onPasswordBlur,
+          onConfirmPasswordBlur } from "../../actions/login-actions";
 
 
 class SignIn extends Component{
@@ -32,10 +38,10 @@ class SignIn extends Component{
     }
 
   }
-
+/*
   componentWillReceiveProps(nextProps) {
   
-  alert("componentWillReceiveProps ==>" +  JSON.stringify(this.props, null, "\t"));
+  console.log("componentWillReceiveProps ==>" +  JSON.stringify(this.props, null, "\t"));
 
     this.setState({
       ...this.state,
@@ -45,14 +51,44 @@ class SignIn extends Component{
       }
       
     });
-  }
+  }*/
 
   onCreateUser = (e) =>{
-
     e.preventDefault(); 
     this.props.dispatch(createNewUser(this.state.user));
     
   }
+
+
+
+  onFirstNameBlur = () => {
+    console.log("onFirstNameBlur==>"+ this.state.user.firstname)
+
+    this.props.dispatch(onFirstNameBlur(this.state.user.firstname));
+  }
+
+
+  onLastNameBlur = () => {
+    this.props.dispatch(onLastNameBlur(this.state.user.lastname));
+  }
+
+
+  onUserNameBlur = () => {
+    this.props.dispatch(onUserNameBlur(this.state.user.username));
+  }
+
+  onPasswordBlur = () => {
+     this.props.dispatch(onPasswordBlur(this.state.user.password));
+  }
+
+
+  onConfirmPasswordBlur = () => {
+    this.props.dispatch(onConfirmPasswordBlur(this.state.user.confirmPassword));
+  }
+
+
+
+
 
   onFirstNameChange = (e) => {
       this.setState({
@@ -128,6 +164,7 @@ class SignIn extends Component{
                 label="First Name"
                 autoFocus
                 onChange={this.onFirstNameChange}
+                onBlur={this.onFirstNameBlur}
                 value={this.state.user.firstname}
               />
             </Grid>

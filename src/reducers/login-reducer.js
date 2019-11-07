@@ -1,4 +1,15 @@
-import {CREATE_USER, CREATE_USER_SUCCEEDED, CREATE_USER_FAILED, CREATE_NEW_USER} from '../actions/login-actions';
+import {
+		CREATE_USER, 
+		CREATE_USER_SUCCEEDED, 
+		CREATE_USER_FAILED, 
+		CREATE_NEW_USER,
+		ON_FIRSTNAME_BLUR,
+		ON_LASTNAME_BLUR,
+		ON_USERNAME_BLUR,
+		ON_PASSWORD_BLUR,
+		ON_CONFIRMPASSWORD_BLUR
+
+	} from '../actions/login-actions';
 
 
 
@@ -69,7 +80,7 @@ function loginReducer(state, action){
 			
 			
 			alert(action.type)
-			alert(JSON.stringify(payload, null, "\t"));
+			alert("pl=>"+JSON.stringify(payload, null, "\t"));
 			
 
 			return 	{
@@ -111,14 +122,79 @@ function loginReducer(state, action){
 				}
 			};
 
-			//return state;
 
 		case CREATE_NEW_USER:
-			alert(action.type)
-			alert(JSON.stringify(payload, null, "\t"));
+			console.log(action.type)
+			console.log(JSON.stringify(payload, null, "\t"));
 
 			return state;
-					
+		
+		case ON_FIRSTNAME_BLUR:
+			var {payload} = action;
+			console.log("reducer==>"+JSON.stringify(payload, null, "\t"));
+
+		
+			return 	{
+				...state,
+				user: {
+					...state.user,
+					firstname: payload.firstName
+				}
+			}
+
+		case ON_LASTNAME_BLUR:
+
+			var {payload} = action;
+			console.log("reducer==>"+JSON.stringify(payload, null, "\t"));
+
+		
+			return 	{
+				...state,
+				user: {
+					...state.user,
+					firstname: payload.firstName
+				}
+			}
+
+		case ON_USERNAME_BLUR:
+			var {payload} = action;
+			console.log("reducer==>"+JSON.stringify(payload, null, "\t"));
+
+		
+			return 	{
+				...state,
+				user: {
+					...state.user,
+					username: payload.userName
+				}
+			}
+
+		case ON_PASSWORD_BLUR:
+			var {payload} = action;
+			console.log("reducer==>"+JSON.stringify(payload, null, "\t"));
+
+		
+			return 	{
+				...state,
+				user: {
+					...state.user,
+					password: payload.password
+				}
+			}
+
+		case ON_CONFIRMPASSWORD_BLUR:	
+			var {payload} = action;
+			console.log("reducer==>"+JSON.stringify(payload, null, "\t"));
+
+		
+			return 	{
+				...state,
+				user: {
+					...state.user,
+					confirmPassword: payload.confirmPassword
+				}
+			}	
+
 
 
 			

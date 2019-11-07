@@ -1,32 +1,15 @@
 import {connect} from "react-redux";
 import SignIn from "../base/SignIn"
-import { createUser } from "../../actions/login-actions"
-
 
 
 function mapStateToProps(state){
 	return {
-		user: state.user
+		statusCode : state.statusCode,
+		user: state.user,
+		errors: state.errors
 	};
 }
 
 
 
-const mapDispatchToProps =  dispatch => {
-	return{
-		onCreateUser: 
-			user => createUser(dispatch, user)
-	}
-
-}
-
-
-
-
-var signInWithRedux = connect(
-		mapStateToProps,
-		mapDispatchToProps
-
-)(SignIn);
-
-export default signInWithRedux;
+export default connect(mapStateToProps)(SignIn);

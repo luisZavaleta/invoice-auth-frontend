@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from "redux";
-import {Provider} from "react-redux";
-import loginReducer from "./reducers/login-reducer"
+import {createStore, applyMiddleware } from 'redux';
+import {Provider} from 'react-redux';
+import loginReducer from './reducers/login-reducer';
 import './index.css';
 import 'typeface-roboto';
+import thunk from 'redux-thunk';
+import { composeWithDevTools} from 'redux-devtools-extension';
 
 
 import Main from "./components/Main"
@@ -13,7 +15,10 @@ import * as serviceWorker from './serviceWorker';
 
 var destination = document.getElementById('root');
 
-var store = createStore(loginReducer);
+var store = createStore(
+		loginReducer,
+		composeWithDevTools(applyMiddleware(thunk))
+);
 
 ReactDOM.render(<Provider store={store}>
 					<Main />
@@ -26,3 +31,6 @@ ReactDOM.render(<Provider store={store}>
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+
+//http://localhost:8082

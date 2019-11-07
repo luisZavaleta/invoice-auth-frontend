@@ -13,17 +13,100 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { singInStyles } from '../commons/styles';
 import Copyright from "../commons/Copyright"
-
-
+import { createUser, createNewUser } from "../../actions/login-actions"
 
 
 class SignIn extends Component{
 
-	render(){
+  constructor(props){
+    super(props);
+    this.state = {
+      statusCode: '',
+      user: {
+        username: '',
+        password: '',
+        firstname: '',
+        lastname: '',
+        confirmPassword: ''
+      },
+    }
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+  
+  alert("componentWillReceiveProps ==>" +  JSON.stringify(this.props, null, "\t"));
+
+    this.setState({
+      ...this.state,
+      user: {
+        ...this.state.user,
+        firstname : this.props.user.username
+      }
+      
+    });
+  }
+
+  onCreateUser = (e) =>{
+
+    e.preventDefault(); 
+    this.props.dispatch(createNewUser(this.state.user));
+    
+  }
+
+  onFirstNameChange = (e) => {
+      this.setState({
+        user:{
+          ...this.state.user,
+          firstname:e.target.value
+        }
+      })
+  }
+
+    onLastNameChange = (e) => {
+      this.setState({
+        user:{
+          ...this.state.user,
+          lastname:e.target.value
+        }
+      })
+    }
+
+    onEmailChange = (e) => {
+      this.setState({
+        user:{
+          ...this.state.user,
+          username:e.target.value
+        }
+      })
+    }
+
+    onPasswordChange = (e) => {
+      this.setState({
+        user:{
+          ...this.state.user,
+          password:e.target.value
+        }
+      })
+    }
+
+    onConfirmPasswordChange = (e) => {
+      this.setState({
+        user:{
+          ...this.state.user,
+          confirmPassword:e.target.value
+        }
+      })
+    }
+
+
+  render(){
 
     const { classes } = this.props;
 
-		return (
+
+
+    return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -31,7 +114,7 @@ class SignIn extends Component{
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Enter your information to create a new account. 
+        {this.props.user.username}  Enter your information to create a new account. 
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -44,6 +127,8 @@ class SignIn extends Component{
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={this.onFirstNameChange}
+                value={this.state.user.firstname}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -54,6 +139,8 @@ class SignIn extends Component{
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={this.onLastNameChange}
+                value={this.state.user.lastname}
               />
             </Grid>
             <Grid item xs={12}>
@@ -64,7 +151,9 @@ class SignIn extends Component{
                 id="email"
                 label="Email Address"
                 name="email"
-                autoComplete="email"
+  
+                onChange={this.onEmailChange}
+                value={this.state.user.username}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -77,6 +166,8 @@ class SignIn extends Component{
                 label="Password"
                 type="password"
                 id="password"
+                onChange={this.onPasswordChange}
+                value={this.state.user.password}
                
               />
             </Grid>
@@ -89,6 +180,8 @@ class SignIn extends Component{
                 label="Confirm Password"
                 type="password"
                 id="confirm"
+                onChange={this.onConfirmPasswordChange}
+                value={this.state.user.confirmPassword}
               />
             </Grid>
              
@@ -110,7 +203,7 @@ class SignIn extends Component{
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={() => this.props.onCreateUser({name: "Luis Z"})}
+            onClick={(e) => this.onCreateUser(e)}
           >
             Sign Up
           </Button>
@@ -128,7 +221,7 @@ class SignIn extends Component{
       </Box>
     </Container>
   );
-	}
+  }
 
 }
 

@@ -3,9 +3,8 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
 
-class Copyright extends Component{
-  render(){
-    return (
+const Copyright = () =>{
+   return (
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
         <Link color="inherit" href="https://material-ui.com/">
@@ -15,7 +14,8 @@ class Copyright extends Component{
         {'.'}
       </Typography>
   );
-  }
 }
+
+
 
 export default Copyright;

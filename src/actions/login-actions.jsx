@@ -62,8 +62,6 @@ export function createNewUser(user){
 
 
 export function onFirstNameBlur(firstName){
-
-	console.log("action==>"+ firstName)
 	
 	return{
 		type: ON_FIRSTNAME_BLUR,
@@ -83,7 +81,7 @@ export function onLastNameBlur(lastName){
 export function onUserNameBlur(userName){
 	return{
 		type: ON_USERNAME_BLUR,
-		payload: {username: userName},
+		payload: {userName: userName},
 	};
 }
 

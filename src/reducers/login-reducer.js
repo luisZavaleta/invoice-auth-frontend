@@ -145,14 +145,13 @@ function loginReducer(state, action){
 		case ON_LASTNAME_BLUR:
 
 			var {payload} = action;
-			console.log("reducer==>"+JSON.stringify(payload, null, "\t"));
 
 		
 			return 	{
 				...state,
 				user: {
 					...state.user,
-					firstname: payload.firstName
+					lastname: payload.lastName
 				}
 			}
 

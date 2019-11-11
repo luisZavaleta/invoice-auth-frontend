@@ -28,62 +28,44 @@ class SignIn extends Component{
     super(props);
     this.state = {
       statusCode: '',
-      user: {
-        username: '',
-        password: '',
-        firstname: '',
-        lastname: '',
-        confirmPassword: ''
-      },
+      user: this.props.user,
     }
 
   }
-/*
-  componentWillReceiveProps(nextProps) {
-  
-  console.log("componentWillReceiveProps ==>" +  JSON.stringify(this.props, null, "\t"));
 
-    this.setState({
-      ...this.state,
-      user: {
-        ...this.state.user,
-        firstname : this.props.user.username
-      }
-      
-    });
-  }*/
+
+
+
 
   onCreateUser = (e) =>{
     e.preventDefault(); 
-    this.props.dispatch(createNewUser(this.state.user));
-    
+    this.props.dispatch(createNewUser(this.props.user));
   }
 
 
+  onFirstNameBlur = (e) => {
 
-  onFirstNameBlur = () => {
-    console.log("onFirstNameBlur==>"+ this.state.user.firstname)
-
-    this.props.dispatch(onFirstNameBlur(this.state.user.firstname));
+    this.props.dispatch(onFirstNameBlur(e.target.value));
   }
 
 
-  onLastNameBlur = () => {
-    this.props.dispatch(onLastNameBlur(this.state.user.lastname));
+  onLastNameBlur = (e) => {
+
+    this.props.dispatch(onLastNameBlur(e.target.value));
   }
 
 
-  onUserNameBlur = () => {
-    this.props.dispatch(onUserNameBlur(this.state.user.username));
+  onUserNameBlur = (e) => {
+    this.props.dispatch(onUserNameBlur(e.target.value));
   }
 
-  onPasswordBlur = () => {
-     this.props.dispatch(onPasswordBlur(this.state.user.password));
+  onPasswordBlur = (e) => {
+     this.props.dispatch(onPasswordBlur(e.target.value));
   }
 
 
-  onConfirmPasswordBlur = () => {
-    this.props.dispatch(onConfirmPasswordBlur(this.state.user.confirmPassword));
+  onConfirmPasswordBlur = (e) => {
+    this.props.dispatch(onConfirmPasswordBlur(e.target.value));
   }
 
 
@@ -91,6 +73,9 @@ class SignIn extends Component{
 
 
   onFirstNameChange = (e) => {
+
+   
+
       this.setState({
         user:{
           ...this.state.user,
@@ -163,9 +148,8 @@ class SignIn extends Component{
                 id="firstName"
                 label="First Name"
                 autoFocus
-                onChange={this.onFirstNameChange}
-                onBlur={this.onFirstNameBlur}
-                value={this.state.user.firstname}
+                onChange={this.onFirstNameBlur}
+                value={this.props.user.firstname}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -176,8 +160,8 @@ class SignIn extends Component{
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
-                onChange={this.onLastNameChange}
-                value={this.state.user.lastname}
+                onChange={this.onLastNameBlur}
+                value={this.props.user.lastname}
               />
             </Grid>
             <Grid item xs={12}>
@@ -188,9 +172,8 @@ class SignIn extends Component{
                 id="email"
                 label="Email Address"
                 name="email"
-  
-                onChange={this.onEmailChange}
-                value={this.state.user.username}
+                onChange={this.onUserNameBlur}
+                value={this.props.user.username}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -203,8 +186,8 @@ class SignIn extends Component{
                 label="Password"
                 type="password"
                 id="password"
-                onChange={this.onPasswordChange}
-                value={this.state.user.password}
+                onChange={this.onPasswordBlur}
+                value={this.props.user.password}
                
               />
             </Grid>
@@ -217,8 +200,8 @@ class SignIn extends Component{
                 label="Confirm Password"
                 type="password"
                 id="confirm"
-                onChange={this.onConfirmPasswordChange}
-                value={this.state.user.confirmPassword}
+                onChange={this.onConfirmPasswordBlur}
+                value={this.props.user.confirmPassword}
               />
             </Grid>
              

@@ -21,6 +21,8 @@ import {  createUser,
           onPasswordBlur,
           onConfirmPasswordBlur } from "../../actions/login-actions";
 
+import {containsErrorOnField, passwordsMatchError }from "../../utils/utils"
+
 
 class SignIn extends Component{
 
@@ -68,57 +70,6 @@ class SignIn extends Component{
     this.props.dispatch(onConfirmPasswordBlur(e.target.value));
   }
 
-
-
-
-
-  onFirstNameChange = (e) => {
-
-   
-
-      this.setState({
-        user:{
-          ...this.state.user,
-          firstname:e.target.value
-        }
-      })
-  }
-
-    onLastNameChange = (e) => {
-      this.setState({
-        user:{
-          ...this.state.user,
-          lastname:e.target.value
-        }
-      })
-    }
-
-    onEmailChange = (e) => {
-      this.setState({
-        user:{
-          ...this.state.user,
-          username:e.target.value
-        }
-      })
-    }
-
-    onPasswordChange = (e) => {
-      this.setState({
-        user:{
-          ...this.state.user,
-          password:e.target.value
-        }
-      })
-    }
-
-    onConfirmPasswordChange = (e) => {
-      this.setState({
-        user:{
-          ...this.state.user,
-          confirmPassword:e.target.value
-        }
-      })
-    }
 
 
   render(){
@@ -174,6 +125,7 @@ class SignIn extends Component{
                 name="email"
                 onChange={this.onUserNameBlur}
                 value={this.props.user.username}
+                error={this.props.errors &&  containsErrorOnField( this.props.errors, "username")}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -188,6 +140,10 @@ class SignIn extends Component{
                 id="password"
                 onChange={this.onPasswordBlur}
                 value={this.props.user.password}
+                error={
+                  this.props.errors &&  
+                  (containsErrorOnField( this.props.errors, "password") ||  passwordsMatchError(this.props.errors))
+                }
                
               />
             </Grid>
@@ -202,6 +158,8 @@ class SignIn extends Component{
                 id="confirm"
                 onChange={this.onConfirmPasswordBlur}
                 value={this.props.user.confirmPassword}
+                error={this.props.errors &&  passwordsMatchError(this.props.errors)}
+
               />
             </Grid>
              
@@ -211,8 +169,13 @@ class SignIn extends Component{
                   variant="body2"
                   color="error">
                   
-                  <Box borderRadius="borderRadius" bgcolor="error.main" color="error.contrastText" p={1} m={1} >
-                    Error Goes here
+                  <Box borderRadius="borderRadius"  color="error.main" p={1} m={1} >
+            
+                    {this.props.errors && 
+                       this.props.errors.errors.map((error) =>  <li> {error.message} </li> )
+                    }
+
+
                   </Box>
                 </Typography>
              </Grid>

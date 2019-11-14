@@ -2,6 +2,7 @@ import React, {Component} from "react";
 
 import {Route, Switch, BrowserRouter} from "react-router-dom";
 import SignIn from "./connected/SignInHOC";
+import SignInSucessful from "./base/SignInSuccessful";
 import Hello from "./base/Hello";
 import Container from '@material-ui/core/Container';
 
@@ -17,6 +18,7 @@ class Main extends Component{
 			  		<Container component="main" maxWidth="xs">
 			  			<Route path="/hello" component={Hello}/>
 			  			<Route path="/signin" component={SignIn}/>
+			  			<Route path="/signinsucess" component={SignInSucessful}/>
 			  		</Container>
 				</Switch>
 			</BrowserRouter>

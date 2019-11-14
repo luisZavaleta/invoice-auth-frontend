@@ -86,7 +86,7 @@ class SignIn extends Component{
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-        {this.props.user.username}  Enter your information to create a new account. 
+         Enter your information to create a new account. 
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -172,7 +172,9 @@ class SignIn extends Component{
                   <Box borderRadius="borderRadius"  color="error.main" p={1} m={1} >
             
                     {this.props.errors && 
-                       this.props.errors.errors.map((error) =>  <li> {error.message} </li> )
+                        <ul>
+                          {this.props.errors.errors.map((error) =>  <li> {error.message} </li> )}
+                        </ul>
                     }
 
 

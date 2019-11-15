@@ -4,7 +4,6 @@ import axios from 'axios';
 export const CREATE_USER = "CREATE_USER";
 export const CREATE_USER_SUCCEEDED = "CREATE_USER_SUCCEEDED";
 export const CREATE_USER_FAILED = "CREATE_USER_FAILED";
-export const CREATE_NEW_USER = "CREATE_USER";
 export const ON_FIRSTNAME_BLUR = "ON_FIRSTNAME_BLUR";
 export const ON_LASTNAME_BLUR = "ON_LASTNAME_BLUR";
 export const ON_USERNAME_BLUR = "ON_USERNAME_BLUR";
@@ -61,7 +60,7 @@ export function createNewUser(user){
 
 
 
-export function onFirstNameBlur(firstName){
+export function onFirstNameChange(firstName){
 	
 	return{
 		type: ON_FIRSTNAME_BLUR,
@@ -70,7 +69,7 @@ export function onFirstNameBlur(firstName){
 }
 
 
-export function onLastNameBlur(lastName){
+export function onLastNameChange(lastName){
 	return{
 		type: ON_LASTNAME_BLUR,
 		payload: {lastName: lastName},
@@ -78,14 +77,14 @@ export function onLastNameBlur(lastName){
 }
 
 
-export function onUserNameBlur(userName){
+export function onUserNameChange(userName){
 	return{
 		type: ON_USERNAME_BLUR,
 		payload: {userName: userName},
 	};
 }
 
-export function onPasswordBlur(password){
+export function onPasswordChange(password){
 	return{
 		type: ON_PASSWORD_BLUR,
 		payload: {password: password},
@@ -93,7 +92,7 @@ export function onPasswordBlur(password){
 }
 
 
-export function onConfirmPasswordBlur(confirmPassword){
+export function onConfirmPasswordChange(confirmPassword){
 	return{
 		type: ON_CONFIRMPASSWORD_BLUR,
 		payload: {confirmPassword: confirmPassword},

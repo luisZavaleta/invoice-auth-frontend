@@ -13,32 +13,19 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { singInStyles } from '../commons/styles';
 import Copyright from "../commons/Copyright";
-import {  createUser,
-          createNewUser,
-          onFirstNameBlur,
-          onLastNameBlur,
-          onUserNameBlur,
-          onPasswordBlur,
-          onConfirmPasswordBlur } from "../../actions/login-actions";
+import {  createNewUser,
+          onFirstNameChange,
+          onLastNameChange,
+          onUserNameChange,
+          onPasswordChange,
+          onConfirmPasswordChange} from "../../actions/login-actions";
 
 import {containsErrorOnField, passwordsMatchError }from "../../utils/utils"
-
 import { Redirect } from 'react-router-dom'
 
 
+
 class SignIn extends Component{
-
-  constructor(props){
-    super(props);
-    this.state = {
-      statusCode: '',
-      user: this.props.user,
-    }
-
-  }
-
-
-
 
 
   onCreateUser = (e) =>{
@@ -48,30 +35,24 @@ class SignIn extends Component{
 
 
   onFirstNameBlur = (e) => {
-
-    this.props.dispatch(onFirstNameBlur(e.target.value));
+    this.props.dispatch(onFirstNameChange(e.target.value));
   }
-
 
   onLastNameBlur = (e) => {
-
-    this.props.dispatch(onLastNameBlur(e.target.value));
+    this.props.dispatch(onLastNameChange(e.target.value));
   }
 
-
   onUserNameBlur = (e) => {
-    this.props.dispatch(onUserNameBlur(e.target.value));
+    this.props.dispatch(onUserNameChange(e.target.value));
   }
 
   onPasswordBlur = (e) => {
-     this.props.dispatch(onPasswordBlur(e.target.value));
+     this.props.dispatch(onPasswordChange(e.target.value));
   }
-
 
   onConfirmPasswordBlur = (e) => {
-    this.props.dispatch(onConfirmPasswordBlur(e.target.value));
+    this.props.dispatch(onConfirmPasswordChange(e.target.value));
   }
-
 
   renderRedirect = () => {
     if (this.props.statusCode === 200) {
@@ -83,8 +64,6 @@ class SignIn extends Component{
   render(){
 
     const { classes } = this.props;
-
-
 
     return (
     <Container component="main" maxWidth="xs">
@@ -137,7 +116,6 @@ class SignIn extends Component{
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-
               <TextField
                 variant="standard"
                 required
@@ -152,7 +130,6 @@ class SignIn extends Component{
                   this.props.errors &&  
                   (containsErrorOnField( this.props.errors, "password") ||  passwordsMatchError(this.props.errors))
                 }
-               
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -167,7 +144,6 @@ class SignIn extends Component{
                 onChange={this.onConfirmPasswordBlur}
                 value={this.props.user.confirmPassword}
                 error={this.props.errors &&  passwordsMatchError(this.props.errors)}
-
               />
             </Grid>
              
@@ -178,14 +154,11 @@ class SignIn extends Component{
                   color="error">
                   
                   <Box borderRadius="borderRadius"  color="error.main" p={1} m={1} >
-            
                     {this.props.errors && 
                         <ul>
                           {this.props.errors.errors.map((error) =>  <li> {error.message} </li> )}
                         </ul>
                     }
-
-
                   </Box>
                 </Typography>
              </Grid>
@@ -216,7 +189,6 @@ class SignIn extends Component{
     </Container>
   );
   }
-
 }
 
 SignIn.propTypes = {

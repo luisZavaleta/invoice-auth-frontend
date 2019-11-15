@@ -23,7 +23,6 @@ function loginReducer(state, action){
 		return { 
 			statusCode: null,
 			user: {
-				id: '',
 				username: '',
 				password: '',
 				firstname: '',
@@ -90,10 +89,28 @@ function loginReducer(state, action){
 
 		case CREATE_USER_SUCCEEDED:
 
+
+			var {payload} = action;
+
 			alert(action.type)
 			alert("Payload=>"+JSON.stringify(payload, null, "\t"));
 
-			return state;
+
+			return { 
+				statusCode: payload.status,
+				user: {
+					username: payload.username,
+					firstname: payload.firstname,
+					lastname: payload.lastname,
+					password: '',
+					confirmPassword: ''
+				},
+				errors: {
+					errorCount: 0,
+					errors: [
+					]
+				}
+			}
 
 
 		case CREATE_USER_FAILED:

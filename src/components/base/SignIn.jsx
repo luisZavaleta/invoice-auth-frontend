@@ -23,6 +23,8 @@ import {  createUser,
 
 import {containsErrorOnField, passwordsMatchError }from "../../utils/utils"
 
+import { Redirect } from 'react-router-dom'
+
 
 class SignIn extends Component{
 
@@ -70,6 +72,12 @@ class SignIn extends Component{
     this.props.dispatch(onConfirmPasswordBlur(e.target.value));
   }
 
+
+  renderRedirect = () => {
+    if (this.props.statusCode === 200) {
+      return <Redirect to='/signinsucess' />
+    }
+  }
 
 
   render(){
@@ -182,6 +190,7 @@ class SignIn extends Component{
                 </Typography>
              </Grid>
           </Grid>
+          {this.renderRedirect()}
           <Button
             type="submit"
             fullWidth

@@ -1,19 +1,19 @@
 import {
 		CREATE_USER_SUCCEEDED, 
 		CREATE_USER_FAILED, 
-		ON_FIRSTNAME_BLUR,
-		ON_LASTNAME_BLUR,
-		ON_USERNAME_BLUR,
-		ON_PASSWORD_BLUR,
-		ON_CONFIRMPASSWORD_BLUR
+		ON_FIRSTNAME_CHANGE,
+		ON_LASTNAME_CHANGE,
+		ON_USERNAME_CHANGE,
+		ON_PASSWORD_CHANGE,
+		ON_CONFIRMPASSWORD_CHANGE
 
 	} from '../actions/login-actions';
+
 
 
 function loginReducer(state, action){
 	
 	if(state === undefined){
-
 		return { 
 			statusCode: null,
 			user: {
@@ -28,7 +28,6 @@ function loginReducer(state, action){
 				errors: []
 			}
 		};
-
 	}
 
 	var {payload} = action;
@@ -54,7 +53,6 @@ function loginReducer(state, action){
 
 
 		case CREATE_USER_FAILED:
-
 			return { 
 				statusCode: payload.error.status,
 				user: {
@@ -76,8 +74,7 @@ function loginReducer(state, action){
 			};
 
 		
-		case ON_FIRSTNAME_BLUR:
-		
+		case ON_FIRSTNAME_CHANGE:
 			return 	{
 				...state,
 				user: {
@@ -87,8 +84,7 @@ function loginReducer(state, action){
 			};
 
 
-		case ON_LASTNAME_BLUR:
-
+		case ON_LASTNAME_CHANGE:
 			return 	{
 				...state,
 				user: {
@@ -98,8 +94,7 @@ function loginReducer(state, action){
 			};
 
 
-		case ON_USERNAME_BLUR:
-
+		case ON_USERNAME_CHANGE:
 			return 	{
 				...state,
 				user: {
@@ -109,8 +104,7 @@ function loginReducer(state, action){
 			};
 
 
-		case ON_PASSWORD_BLUR:
-
+		case ON_PASSWORD_CHANGE:
 			return 	{
 				...state,
 				user: {
@@ -120,8 +114,7 @@ function loginReducer(state, action){
 			};
 
 
-		case ON_CONFIRMPASSWORD_BLUR:	
-
+		case ON_CONFIRMPASSWORD_CHANGE:	
 			return 	{
 				...state,
 				user: {
@@ -134,7 +127,6 @@ function loginReducer(state, action){
 			return state;
 
 	}
-
 }
 
 export default loginReducer;

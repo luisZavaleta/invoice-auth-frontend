@@ -1,17 +1,16 @@
 import axios from 'axios';
 
-
 export const CREATE_USER = "CREATE_USER";
 export const CREATE_USER_SUCCEEDED = "CREATE_USER_SUCCEEDED";
 export const CREATE_USER_FAILED = "CREATE_USER_FAILED";
-export const ON_FIRSTNAME_BLUR = "ON_FIRSTNAME_BLUR";
-export const ON_LASTNAME_BLUR = "ON_LASTNAME_BLUR";
-export const ON_USERNAME_BLUR = "ON_USERNAME_BLUR";
-export const ON_PASSWORD_BLUR = "ON_PASSWORD_BLUR";
-export const ON_CONFIRMPASSWORD_BLUR = "ON_CONFIRMPASSWORD_BLUR";
+export const ON_FIRSTNAME_CHANGE = "ON_FIRSTNAME_CHANGE";
+export const ON_LASTNAME_CHANGE = "ON_LASTNAME_CHANGE";
+export const ON_USERNAME_CHANGE = "ON_USERNAME_CHANGE";
+export const ON_PASSWORD_CHANGE = "ON_PASSWORD_CHANGE";
+export const ON_CONFIRMPASSWORD_CHANGE = "ON_CONFIRMPASSWORD_CHANGE";
 
 
-const API_BASE_URL = 'http://localhost:8082';
+const API_BASE_URL = process.env.REACT_APP_BASE_PATH;
 
 const axiosClient = axios.create({
 	baseURL: API_BASE_URL,
@@ -45,6 +44,7 @@ export function createUserFailed(user, error){
 	};
 }
 
+
 export function createNewUser(user){
 
 	return dispatch => {
@@ -55,15 +55,13 @@ export function createNewUser(user){
     			dispatch(createUserFailed(user, error.response));
 			});
 	}
-
 }
-
 
 
 export function onFirstNameChange(firstName){
 	
 	return{
-		type: ON_FIRSTNAME_BLUR,
+		type: ON_FIRSTNAME_CHANGE,
 		payload: {firstName: firstName},
 	};
 }
@@ -71,7 +69,7 @@ export function onFirstNameChange(firstName){
 
 export function onLastNameChange(lastName){
 	return{
-		type: ON_LASTNAME_BLUR,
+		type: ON_LASTNAME_CHANGE,
 		payload: {lastName: lastName},
 	};
 }
@@ -79,14 +77,14 @@ export function onLastNameChange(lastName){
 
 export function onUserNameChange(userName){
 	return{
-		type: ON_USERNAME_BLUR,
+		type: ON_USERNAME_CHANGE,
 		payload: {userName: userName},
 	};
 }
 
 export function onPasswordChange(password){
 	return{
-		type: ON_PASSWORD_BLUR,
+		type: ON_PASSWORD_CHANGE,
 		payload: {password: password},
 	};
 }
@@ -94,13 +92,7 @@ export function onPasswordChange(password){
 
 export function onConfirmPasswordChange(confirmPassword){
 	return{
-		type: ON_CONFIRMPASSWORD_BLUR,
+		type: ON_CONFIRMPASSWORD_CHANGE,
 		payload: {confirmPassword: confirmPassword},
 	};
 }
-
-
-
-
-
-

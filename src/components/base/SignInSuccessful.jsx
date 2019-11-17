@@ -11,15 +11,12 @@ import { singInStyles } from '../commons/styles';
 import Copyright from "../commons/Copyright";
 
 
-
 class SignInSuccessful extends Component{
 
 
   render(){
 
     const { classes } = this.props;
-
-
 
     return (
       <Container component="main" maxWidth="xs">
@@ -31,17 +28,13 @@ class SignInSuccessful extends Component{
           <Typography component="h1" variant="h5">
            One last step. Your account is almost created. You just need to validate your e-mail.
           </Typography>
-          
-
-
         </div>
         <Box mt={5}>
           <Copyright />
         </Box>
       </Container>
-  );
+    );
   }
-
 }
 
 SignInSuccessful.propTypes = {

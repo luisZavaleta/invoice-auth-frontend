@@ -9,9 +9,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # install and cache app dependencies
 COPY . ./
-RUN npm install
-RUN npm install react-scripts@3.0.1 -g --silent
+RUN npm run build
+RUN npm install -g serve
+CMD serve -s build
 
-# start app
-CMD ["npm", "start"]
-
+EXPOSE 5000

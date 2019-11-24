@@ -1,16 +1,14 @@
 import axios from 'axios';
 
-export const CREATE_USER = "CREATE_USER";
-export const CREATE_USER_SUCCEEDED = "CREATE_USER_SUCCEEDED";
-export const CREATE_USER_FAILED = "CREATE_USER_FAILED";
-export const ON_FIRSTNAME_CHANGE = "ON_FIRSTNAME_CHANGE";
-export const ON_LASTNAME_CHANGE = "ON_LASTNAME_CHANGE";
-export const ON_USERNAME_CHANGE = "ON_USERNAME_CHANGE";
-export const ON_PASSWORD_CHANGE = "ON_PASSWORD_CHANGE";
-export const ON_CONFIRMPASSWORD_CHANGE = "ON_CONFIRMPASSWORD_CHANGE";
+export const ON_LOGIN_EMAIL_CHANGE = "LOGIN_EMAIL_CHANGE";
+export const ON_LOGIN_PASSWORD_CHANGE = "LOGIN_PASSWORD_CHANGE";
+export const PERFORM_LOGIN = "PERFORM_LOGIN";
+export const PERFORM_LOGIN_SUCCESS = "PERFORM_LOGIN_SUCCESS";
+export const PERFORM_LOGIN_FAIL = "PERFORM_LOGIN_FAIL";
 
 
 const API_BASE_URL = process.env.REACT_APP_BASE_PATH;
+
 
 const axiosClient = axios.create({
 	baseURL: API_BASE_URL,
@@ -21,78 +19,51 @@ const axiosClient = axios.create({
 
 
 
-export function createUser(user){
-	return{
-		type: CREATE_USER,
-		payload: user,
-	};
-}
 
-
-export function createUserSucceeded(user){
-	return{
-		type: CREATE_USER_SUCCEEDED,
-		payload: user,
-	};
-}
-
-
-export function createUserFailed(user, error){
-	return{
-		type: CREATE_USER_FAILED,
-		payload: {user, error}
-	};
-}
-
-
-export function createNewUser(user){
-
+export function performLogin(user){
 	return dispatch => {
-		axiosClient.post(API_BASE_URL + "/signin", user)
+		axiosClient.post(API_BASE_URL + "/authenticate", user)
 			.then(resp =>{
-				dispatch(createUserSucceeded(resp.data));
+				dispatch(performLoginSucess(resp.data));
 			}).catch(error => {
-    			dispatch(createUserFailed(user, error.response));
+    			dispatch(performLoginFail(error.response.data));
 			});
 	}
 }
 
 
-export function onFirstNameChange(firstName){
-	
+export function performLoginSucess(data){
 	return{
-		type: ON_FIRSTNAME_CHANGE,
-		payload: {firstName: firstName},
+		type: PERFORM_LOGIN_SUCCESS,
+		payload: data,
 	};
 }
 
 
-export function onLastNameChange(lastName){
+export function performLoginFail(data){
 	return{
-		type: ON_LASTNAME_CHANGE,
-		payload: {lastName: lastName},
+		type: PERFORM_LOGIN_FAIL,
+		payload: {
+			status: data.status, 
+			message: (data.status === 401) ? "User or Password not valid, please try again" :  data.message
+		},
 	};
 }
 
 
-export function onUserNameChange(userName){
+export function onUsernameChange(username){
 	return{
-		type: ON_USERNAME_CHANGE,
-		payload: {userName: userName},
+		type: ON_LOGIN_EMAIL_CHANGE,
+		payload: {username: username},
 	};
 }
 
 export function onPasswordChange(password){
 	return{
-		type: ON_PASSWORD_CHANGE,
+		type: ON_LOGIN_PASSWORD_CHANGE,
 		payload: {password: password},
 	};
 }
 
 
-export function onConfirmPasswordChange(confirmPassword){
-	return{
-		type: ON_CONFIRMPASSWORD_CHANGE,
-		payload: {confirmPassword: confirmPassword},
-	};
-}
+

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware } from 'redux';
 import {Provider} from 'react-redux';
-import loginReducer from './reducers/login-reducer';
+import reducer from './reducers/reducer';
 import './index.css';
 import 'typeface-roboto';
 import thunk from 'redux-thunk';
@@ -16,7 +16,7 @@ import * as serviceWorker from './serviceWorker';
 var destination = document.getElementById('root');
 
 var store = createStore(
-		loginReducer,
+		reducer,
 		composeWithDevTools(applyMiddleware(thunk))
 );
 

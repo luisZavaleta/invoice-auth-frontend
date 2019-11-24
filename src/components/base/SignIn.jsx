@@ -18,7 +18,7 @@ import {  createNewUser,
           onLastNameChange,
           onUserNameChange,
           onPasswordChange,
-          onConfirmPasswordChange} from "../../actions/login-actions";
+          onConfirmPasswordChange} from "../../actions/signup-actions";
 
 import {containsErrorOnField, passwordsMatchError }from "../../utils/utils"
 import { Redirect } from 'react-router-dom'

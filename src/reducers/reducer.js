@@ -43,6 +43,13 @@ function reducer(state, action){
 					username: '',
 					password: ''
 				}
+			},
+			resetPassword:{
+				status:null,
+				username: '',
+				password:'',
+				confirmPassword: '',
+				token: ''
 			}
 		};
 	}

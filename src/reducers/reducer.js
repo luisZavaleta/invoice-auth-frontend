@@ -17,6 +17,12 @@ import {
 	PERFORM_LOGIN_FAIL
 } from '../actions/login-actions';
 
+import {
+	ON_FORGOT_PASSWORD_USERNAME_CHANGE,
+	ON_FORGOT_PASSWORD_SUCCESS,
+	ON_FORGOT_PASSWORD_FAIL
+} from '../actions/forgot-password-actions';
+
 
 
 function reducer(state, action){
@@ -50,6 +56,11 @@ function reducer(state, action){
 				password:'',
 				confirmPassword: '',
 				token: ''
+			},
+			forgotPassword:{
+				status: null,
+				username: '',
+				enable: ''
 			}
 		};
 	}
@@ -201,6 +212,37 @@ function reducer(state, action){
 
 				}
 			};	
+
+			case ON_FORGOT_PASSWORD_USERNAME_CHANGE:
+			return {
+				...state,
+				forgotPassword:{
+					...state.forgotPassword,
+					username: payload.username
+				}
+			}
+
+			case ON_FORGOT_PASSWORD_SUCCESS:
+
+			return {
+				...state,
+				forgotPassword:{
+					status: payload.status,
+					username: payload.username,
+					enable: payload.enable
+				}
+			}
+
+			case ON_FORGOT_PASSWORD_FAIL:
+			return {
+				...state,
+				forgotPassword:{
+					status: payload.status,
+					username: '',
+					enable: ''
+				}
+			}
+
 
 		default:
 			return state;

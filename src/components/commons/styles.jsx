@@ -22,6 +22,9 @@
       submit: {
         margin: theme.spacing(3, 0, 2),
       },
+       hide: {
+        display: "none",
+      },
     });
 
   export { singInStyles };

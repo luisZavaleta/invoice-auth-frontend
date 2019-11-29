@@ -15,20 +15,31 @@ import PropTypes from 'prop-types';
 import { singInStyles } from '../commons/styles';
 import Copyright from "../commons/Copyright";
 
+import {
+    onForgotPasswordUsernameChange,
+    forgotPasswordSubmit
+
+
+} from  "../../actions/forgot-password-actions";
+
+
+class ForgotPassword extends Component{
 
 
 
-class ChangePassword extends Component{
+  onEmailChange = (e) => {
+    this.props.dispatch(onForgotPasswordUsernameChange(e.target.value));
+  }
 
-componentWillMount(){
-  console.log(this.props.match.params.token)
-  console.log(this.props.match.params.username)
-}
+  forgotPasswordSubmit = (e) => {
+    e.preventDefault(); 
+    this.props.dispatch(forgotPasswordSubmit(this.props.forgotPassword.username));
+  }
+
 
 
 
   render(){
-
 
     const { classes } = this.props;
 
@@ -40,11 +51,18 @@ componentWillMount(){
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Change your password  {this.props.params} :P
+
+            { this.props.forgotPassword.status != 200 && 
+              "Forgot your password? Write down your username and we will send you a mail to recover it."}
+
+            { this.props.forgotPassword.status == 200 && 
+              "You will recieve a mail soon, please click in the link provided to reset your password."}
+
+          
         </Typography>
         <form className={classes.form} noValidate>
+
           <Grid container spacing={2}>
-       
             <Grid item xs={12}>
               <TextField
                 variant="standard"
@@ -53,41 +71,13 @@ componentWillMount(){
                 id="email"
                 label="Email Address"
                 name="email"
-                value={this.props.match.params.username}
-                readonly
+                value={this.props.forgotPassword.username}
+                onChange={this.onEmailChange}
+                className={this.props.forgotPassword.status == 200 ? classes.hide : null} 
+        
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="standard"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                //onChange={this.onPasswordBlur}
-                //value={this.props.user.password}
-                /*error={
-                  this.props.errors &&  
-                  (containsErrorOnField( this.props.errors, "password") ||  passwordsMatchError(this.props.errors))
-                }*/
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="standard"
-                required
-                fullWidth
-                name="confirm"
-                label="Confirm Password"
-                type="password"
-                id="confirm"
-                //onChange={this.onConfirmPasswordBlur}
-                //value={this.props.user.confirmPassword}
-                //error={this.props.errors &&  passwordsMatchError(this.props.errors)}
-              />
-            </Grid>
+       
              
             <Grid item xs={12} bgcolor="error.main" >
                 <Typography 
@@ -112,9 +102,10 @@ componentWillMount(){
               variant="contained"
               color="primary"
               className={classes.submit}
-              //onClick={(e) => this.performLogin(e)}
+              onClick={(e) => this.forgotPasswordSubmit(e)}
+              className={this.props.forgotPassword.status == 200 ? classes.hide : null} 
             >
-              Change Password
+              Recover Password
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
@@ -134,8 +125,9 @@ componentWillMount(){
   }
 }
 
-ChangePassword.propTypes = {
+ForgotPassword.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default  withStyles(singInStyles)(ChangePassword);
+export default  withStyles(singInStyles)(ForgotPassword);
+

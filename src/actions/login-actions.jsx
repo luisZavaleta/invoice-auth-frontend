@@ -54,14 +54,14 @@ export function performLoginFail(data){
 export function onUsernameChange(username){
 	return{
 		type: ON_LOGIN_EMAIL_CHANGE,
-		payload: {username: username},
+		payload: {username: username}
 	};
 }
 
 export function onPasswordChange(password){
 	return{
 		type: ON_LOGIN_PASSWORD_CHANGE,
-		payload: {password: password},
+		payload: {password: password}
 	};
 }
 

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {Route, Switch, BrowserRouter, useParams} from "react-router-dom";
+import {Route, Switch, BrowserRouter} from "react-router-dom";
 import SignIn from "./connected/SignInHOC";
 import LogIn from "./connected/LogInHOC";
 import ChangePassword from "./connected/ChangePasswordHOC";
@@ -14,7 +14,6 @@ import ForgotPassword from "./connected/ForgotPasswordHOC";
 class Main extends Component{
 
  
-
 	render(){
 		return(
 			<BrowserRouter>

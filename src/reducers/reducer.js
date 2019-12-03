@@ -24,6 +24,15 @@ import {
 } from '../actions/forgot-password-actions';
 
 
+import {
+	ON_CHANGE_PASSWORD_CONSTRUCT,
+	ON_CHANGE_PASSWORD_PASSWORD_CHANGE ,
+	ON_CHANGE_PASSWORD_CONFIRM_PASSWORD_CHANGE,
+	ON_CHANGE_PASSWORD_SUCESS,
+	ON_CHANGE_PASSWORD_FAIL
+} from '../actions/change-password-actions';
+
+
 
 function reducer(state, action){
 	
@@ -55,7 +64,9 @@ function reducer(state, action){
 				username: '',
 				password:'',
 				confirmPassword: '',
-				token: ''
+				token: '',
+				errorCount: 0,
+				errors: []
 			},
 			forgotPassword:{
 				status: null,
@@ -160,8 +171,8 @@ function reducer(state, action){
 				}
 			};	
 
-			case ON_LOGIN_EMAIL_CHANGE:	
-			return 	{
+		case ON_LOGIN_EMAIL_CHANGE:	
+		return 	{
 				...state,
 				login: {
 					...state.login,
@@ -172,9 +183,9 @@ function reducer(state, action){
 				}
 			};	
 
-			case ON_LOGIN_PASSWORD_CHANGE:	
-			return 	{
-				...state,
+		case ON_LOGIN_PASSWORD_CHANGE:	
+		return 	{
+			...state,
 				login: {
 					...state.login,
 					user: {
@@ -185,21 +196,21 @@ function reducer(state, action){
 			};	
 
 
-			case PERFORM_LOGIN_SUCCESS:	
-			return 	{
-				...state,
-				login: {
-					...state.login,
-					status: payload.status,
-					token: payload.token,
-					message: '',
-				}
-			};
+		case PERFORM_LOGIN_SUCCESS:	
+		return 	{
+			...state,
+			login: {
+				...state.login,
+				status: payload.status,
+				token: payload.token,
+				message: '',
+			}
+		};
 
 
-			case PERFORM_LOGIN_FAIL:	
-			return 	{
-				...state,
+		case PERFORM_LOGIN_FAIL:	
+		return 	{
+			...state,
 				login: {
 					...state.login,
 					status: payload.status,
@@ -213,33 +224,92 @@ function reducer(state, action){
 				}
 			};	
 
-			case ON_FORGOT_PASSWORD_USERNAME_CHANGE:
+		case ON_FORGOT_PASSWORD_USERNAME_CHANGE:
+		return {
+			...state,
+			forgotPassword:{
+				...state.forgotPassword,
+				username: payload.username
+			}
+		}
+
+		case ON_FORGOT_PASSWORD_SUCCESS:
+
+		return {
+			...state,
+			forgotPassword:{
+				status: payload.status,
+				username: payload.username,
+				enable: payload.enable
+			}
+		}
+
+		case ON_FORGOT_PASSWORD_FAIL:
+		return {
+			...state,
+			forgotPassword:{
+				status: payload.status,
+				username: '',
+				enable: ''
+			}
+		}
+
+		case ON_CHANGE_PASSWORD_CONSTRUCT:
 			return {
 				...state,
-				forgotPassword:{
-					...state.forgotPassword,
+				resetPassword:{
+					...state.resetPassword,
+					token: payload.token,
 					username: payload.username
+					
 				}
 			}
 
-			case ON_FORGOT_PASSWORD_SUCCESS:
-
+		case ON_CHANGE_PASSWORD_PASSWORD_CHANGE:
 			return {
 				...state,
-				forgotPassword:{
-					status: payload.status,
+				resetPassword:{
+					...state.resetPassword,
+					password: payload.password
+				}
+			}
+
+
+		case ON_CHANGE_PASSWORD_CONFIRM_PASSWORD_CHANGE:
+			return {
+				...state,
+				resetPassword:{
+					...state.resetPassword,
+					confirmPassword: payload.confirmPassword
+				}
+			}
+
+		case ON_CHANGE_PASSWORD_SUCESS:
+			return {
+				...state,
+				resetPassword:{
+					...state.resetPassword,
+					status:payload.status,
 					username: payload.username,
-					enable: payload.enable
+					password:'',
+					confirmPassword: '',
+					token: '',
+					errorCount: 0,
+					errors: []
 				}
 			}
 
-			case ON_FORGOT_PASSWORD_FAIL:
+
+		case ON_CHANGE_PASSWORD_FAIL:
 			return {
 				...state,
-				forgotPassword:{
-					status: payload.status,
-					username: '',
-					enable: ''
+				resetPassword:{
+					...state.resetPassword,
+					status:payload.status,
+					password:'',
+					confirmPassword: '',
+					errorCount: payload.errorCount,
+					errors: payload.errors
 				}
 			}
 
@@ -251,3 +321,6 @@ function reducer(state, action){
 }
 
 export default reducer;
+
+
+	

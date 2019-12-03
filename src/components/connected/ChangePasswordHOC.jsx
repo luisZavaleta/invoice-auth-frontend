@@ -3,8 +3,7 @@ import ChangePassword from "../base/ChangePassword"
 
 function mapStateToProps(state){
 	return {
-		login : state.resetPassword,
-		errors: state.errors
+		resetPassword : state.resetPassword
 	};
 }
 

@@ -15,20 +15,48 @@ import PropTypes from 'prop-types';
 import { singInStyles } from '../commons/styles';
 import Copyright from "../commons/Copyright";
 
+import {
+    onChangePasswordConstruct,
+    onChangePasswordPasswordChange,
+    onChangePasswordConfirmPasswordChange,
+    onChangePasswordSubmit
+} from  "../../actions/change-password-actions";
+
 
 
 
 class ChangePassword extends Component{
 
-componentWillMount(){
-  console.log(this.props.match.params.token)
-  console.log(this.props.match.params.username)
-}
+
+  constructor(props) {
+    super(props);
+    this.props.dispatch(onChangePasswordConstruct(this.props.match.params.token, this.props.match.params.username))
+  };
+
+  onChangePasswordPasswordChange = (e) => {
+    this.props.dispatch(onChangePasswordPasswordChange(e.target.value));
+  };
 
 
+  onChangePasswordConfirmPasswordChange = (e) => {
+    this.props.dispatch(onChangePasswordConfirmPasswordChange(e.target.value));
+  };
+
+
+
+  onChangePasswordSubmit = (e) => {
+
+    e.preventDefault(); 
+    this.props.dispatch(onChangePasswordSubmit(this.props.resetPassword));
+  };
+
+
+  getErrors = (err)=> {
+   return  <ul> {err.map((er) => <li>{er}</li>)} </ul>
+
+  }
 
   render(){
-
 
     const { classes } = this.props;
 
@@ -40,7 +68,10 @@ componentWillMount(){
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Change your password  {this.props.params} :P
+          {this.props.resetPassword.status !== 200 && "Change your password."}
+          {this.props.resetPassword.status === 200 && "Your password had been sucessfully changed."}
+
+
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -66,12 +97,10 @@ componentWillMount(){
                 label="Password"
                 type="password"
                 id="password"
-                //onChange={this.onPasswordBlur}
-                //value={this.props.user.password}
-                /*error={
-                  this.props.errors &&  
-                  (containsErrorOnField( this.props.errors, "password") ||  passwordsMatchError(this.props.errors))
-                }*/
+                onChange={this.onChangePasswordPasswordChange}
+                value={this.props.resetPassword.password}
+                error={ this.props.resetPassword.errors.length > 0}
+                className={this.props.resetPassword.status === 200 ? classes.hide : null}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -83,9 +112,10 @@ componentWillMount(){
                 label="Confirm Password"
                 type="password"
                 id="confirm"
-                //onChange={this.onConfirmPasswordBlur}
-                //value={this.props.user.confirmPassword}
-                //error={this.props.errors &&  passwordsMatchError(this.props.errors)}
+                onChange={this.onChangePasswordConfirmPasswordChange}
+                value={this.props.resetPassword.confirmPassword}
+                error={this.props.resetPassword.errors.length > 0}
+                className={this.props.resetPassword.status === 200 ? classes.hide : null}
               />
             </Grid>
              
@@ -96,12 +126,13 @@ componentWillMount(){
                   color="error">
                   
                   <Box borderRadius="borderRadius"  color="error.main" p={1} m={1} >
-                      {/*this.props.login.message*/}
+                      {
+                        this.props.resetPassword.errors.length > 0 && 
+                        this.getErrors(this.props.resetPassword.errors)
+                      }
                   </Box>
 
-                   <Box borderRadius="borderRadius"  color="primary.main" p={1} m={1} >
-                      {/*this.props.login.status === 200 && "You had been logged  in sucessfully"*/}
-                  </Box>
+                  
                 </Typography>
             </Grid>
           
@@ -111,8 +142,8 @@ componentWillMount(){
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}
-              //onClick={(e) => this.performLogin(e)}
+              className={this.props.resetPassword.status === 200 ? classes.hide : classes.submit}
+              onClick={(e) => this.onChangePasswordSubmit(e)}
             >
               Change Password
             </Button>

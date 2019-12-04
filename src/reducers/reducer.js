@@ -32,6 +32,13 @@ import {
 	ON_CHANGE_PASSWORD_FAIL
 } from '../actions/change-password-actions';
 
+import {
+	ON_VALIDATE_MAIL_SUCCESS,
+	ON_VALIDATE_MAIL_FAIL
+} from '../actions/validate-mail-actions';
+
+
+
 
 
 function reducer(state, action){
@@ -72,6 +79,10 @@ function reducer(state, action){
 				status: null,
 				username: '',
 				enable: ''
+			},
+			validateMail: {
+				token: '',
+				message: ''
 			}
 		};
 	}
@@ -312,6 +323,23 @@ function reducer(state, action){
 					errors: payload.errors
 				}
 			}
+
+		case ON_VALIDATE_MAIL_SUCCESS:
+			return {
+				...state,
+				validateMail: {
+					message: payload.message
+				}
+			}
+
+		case ON_VALIDATE_MAIL_FAIL:
+			return {
+				...state,
+				validateMail: {
+					message: payload.message
+				}
+			}
+
 
 
 		default:

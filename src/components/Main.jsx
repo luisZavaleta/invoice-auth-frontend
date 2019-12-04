@@ -7,6 +7,7 @@ import ChangePassword from "./connected/ChangePasswordHOC";
 import SignInSucessful from "./base/SignInSuccessful";
 import Container from '@material-ui/core/Container';
 import ForgotPassword from "./connected/ForgotPasswordHOC";
+import ValidateMail from "./connected/ValidateMailHOC";
 
 
 
@@ -24,6 +25,8 @@ class Main extends Component{
 			  			<Route path="/login" component={LogIn}/>
 			  			<Route path="/changepassword/:token/:username" component={ChangePassword}/>
 			  			<Route path="/forgotpassword" component={ForgotPassword}/>
+			  			<Route path="/validatemail/:token" component={ValidateMail}/>
+
 			  		</Container>
 				</Switch>
 			</BrowserRouter>

@@ -34,7 +34,9 @@ import {
 
 import {
 	ON_VALIDATE_MAIL_SUCCESS,
-	ON_VALIDATE_MAIL_FAIL
+	ON_VALIDATE_MAIL_FAIL,
+	ON_RESEND_VALIDATION_MAIL_SUCCESS,
+	ON_RESEND_VALIDATION_MAIL_FAIL
 } from '../actions/validate-mail-actions';
 
 
@@ -83,7 +85,8 @@ function reducer(state, action){
 			validateMail: {
 				token: '',
 				message: ''
-			}
+			},
+			resendValidationMailMessage: ''
 		};
 	}
 
@@ -339,6 +342,20 @@ function reducer(state, action){
 					message: payload.message
 				}
 			}
+
+		case ON_RESEND_VALIDATION_MAIL_SUCCESS:
+			return {
+				...state,
+				resendValidationMailMessage: payload.message
+			}
+
+
+		case ON_RESEND_VALIDATION_MAIL_FAIL:
+			return {
+				...state,
+				resendValidationMailMessage: payload.message
+			}
+
 
 
 

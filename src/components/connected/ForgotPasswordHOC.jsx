@@ -3,7 +3,8 @@ import ForgotPassword from "../base/ForgotPassword"
 
 function mapStateToProps(state){
 	return {
-		forgotPassword : state.forgotPassword
+		forgotPassword : state.forgotPassword,
+		resendValidationMailMessage : state.resendValidationMailMessage
 	};
 }
 

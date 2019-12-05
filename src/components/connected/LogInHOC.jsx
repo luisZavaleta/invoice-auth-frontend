@@ -3,7 +3,8 @@ import Login from "../base/Login"
 
 function mapStateToProps(state){
 	return {
-		login : state.login
+		login : state.login,
+		resendValidationMailMessage : state.resendValidationMailMessage
 	};
 }
 

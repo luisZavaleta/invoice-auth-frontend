@@ -20,6 +20,8 @@ import {
     onPasswordChange
 } from "../../actions/login-actions";
 
+import { onResendValidationMail } from "../../actions/validate-mail-actions";
+
 
 
 class Login extends Component{
@@ -38,6 +40,32 @@ class Login extends Component{
     e.preventDefault(); 
     this.props.dispatch(performLogin(this.props.login.user));
   };
+
+
+
+  onResendValidationMail = (e) => {
+    e.preventDefault();
+    this.props.dispatch(onResendValidationMail(this.props.login.user.username));
+  };
+
+
+
+  getResendValidationMailLink = (e) => {
+    return   <Grid item xs={12} bgcolor="primary.main" >
+                <Typography 
+                  component="p" 
+                  variant="body2"
+                  color="primary">
+                    <Link href="#"  
+                       onClick={(e) => this.onResendValidationMail(e)} 
+                       >
+                       Re-send Validation Mail.
+                    </Link>    
+                </Typography>
+              </Grid> 
+  }
+
+
 
 
   render(){
@@ -101,6 +129,15 @@ class Login extends Component{
                   </Box>
                 </Typography>
              </Grid>
+             {this.props.login.status === 417  
+              &&  this.props.resendValidationMailMessage === ''
+              && this.getResendValidationMailLink()}
+
+              {this.props.resendValidationMailMessage}
+
+            
+
+
           
         
           <Button

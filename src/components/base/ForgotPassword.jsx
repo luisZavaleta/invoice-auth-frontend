@@ -20,6 +20,9 @@ import {
     forgotPasswordSubmit
 } from  "../../actions/forgot-password-actions";
 
+import { onResendValidationMail } from "../../actions/validate-mail-actions";
+
+
 class ForgotPassword extends Component{
 
   onEmailChange = (e) => {
@@ -38,6 +41,29 @@ class ForgotPassword extends Component{
   isNotEnabledAccount = () => {
     return this.props.forgotPassword.status === 200 && this.props.forgotPassword.enable === false
   }
+
+
+   onResendValidationMail = (e) => {
+    e.preventDefault();
+    this.props.dispatch(onResendValidationMail(this.props.forgotPassword.username));
+  };
+
+
+  getResendValidationMailLink = (e) => {
+    return   <Grid item xs={12} bgcolor="primary.main" >
+                <Typography 
+                  component="p" 
+                  variant="body2"
+                  color="primary">
+                    <Link href="#"  
+                       onClick={(e) => this.onResendValidationMail(e)} 
+                       >
+                       Re-send Validation Mail.
+                    </Link>    
+                </Typography>
+              </Grid> 
+  }
+
  
   render(){
 
@@ -86,6 +112,11 @@ class ForgotPassword extends Component{
                     </Box>
                   </Typography>
               </Grid>
+
+               {this.props.forgotPassword.enable === false
+                && this.getResendValidationMailLink()}
+
+                {this.props.resendValidationMailMessage}
           
               <Button
                 type="submit"
@@ -120,3 +151,4 @@ ForgotPassword.propTypes = {
 };
 
 export default  withStyles(singInStyles)(ForgotPassword);
+//werw@gmail.com

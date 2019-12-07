@@ -23,8 +23,6 @@ import {
 } from  "../../actions/change-password-actions";
 
 
-
-
 class ChangePassword extends Component{
 
 
@@ -42,10 +40,7 @@ class ChangePassword extends Component{
     this.props.dispatch(onChangePasswordConfirmPasswordChange(e.target.value));
   };
 
-
-
   onChangePasswordSubmit = (e) => {
-
     e.preventDefault(); 
     this.props.dispatch(onChangePasswordSubmit(this.props.resetPassword));
   };
@@ -53,7 +48,6 @@ class ChangePassword extends Component{
 
   getErrors = (err)=> {
    return  <ul> {err.map((er) => <li>{er}</li>)} </ul>
-
   }
 
   render(){
@@ -70,8 +64,6 @@ class ChangePassword extends Component{
         <Typography component="h1" variant="h5">
           {this.props.resetPassword.status !== 200 && "Change your password."}
           {this.props.resetPassword.status === 200 && "Your password had been sucessfully changed."}
-
-
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -131,11 +123,8 @@ class ChangePassword extends Component{
                         this.getErrors(this.props.resetPassword.errors)
                       }
                   </Box>
-
-                  
                 </Typography>
             </Grid>
-          
         
             <Button
               type="submit"

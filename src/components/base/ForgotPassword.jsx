@@ -48,7 +48,6 @@ class ForgotPassword extends Component{
     this.props.dispatch(onResendValidationMail(this.props.forgotPassword.username));
   };
 
-
   getResendValidationMailLink = (e) => {
     return   <Grid item xs={12} bgcolor="primary.main" >
                 <Typography 
@@ -157,4 +156,3 @@ ForgotPassword.propTypes = {
 };
 
 export default  withStyles(singInStyles)(ForgotPassword);
-//werw@gmail.com

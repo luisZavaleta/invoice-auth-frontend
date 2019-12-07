@@ -20,7 +20,6 @@ class ValidateMail extends Component{
 
   constructor(props) {
     super(props);
-    console.log("Token==>"+props.match.params.token)
     props.dispatch(onValidateMailConstruct(props.match.params.token));
   }
  

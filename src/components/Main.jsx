@@ -9,11 +9,7 @@ import Container from '@material-ui/core/Container';
 import ForgotPassword from "./connected/ForgotPasswordHOC";
 import ValidateMail from "./connected/ValidateMailHOC";
 
-
-
-
 class Main extends Component{
-
  
 	render(){
 		return(
@@ -35,6 +31,4 @@ class Main extends Component{
 
 }
 
-
 export default Main;
-

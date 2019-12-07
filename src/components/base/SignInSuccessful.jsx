@@ -10,9 +10,7 @@ import PropTypes from 'prop-types';
 import { singInStyles } from '../commons/styles';
 import Copyright from "../commons/Copyright";
 
-
 class SignInSuccessful extends Component{
-
 
   render(){
 

@@ -6,9 +6,7 @@ export const PERFORM_LOGIN = "PERFORM_LOGIN";
 export const PERFORM_LOGIN_SUCCESS = "PERFORM_LOGIN_SUCCESS";
 export const PERFORM_LOGIN_FAIL = "PERFORM_LOGIN_FAIL";
 
-
 const API_BASE_URL = process.env.REACT_APP_BASE_PATH;
-
 
 const axiosClient = axios.create({
 	baseURL: API_BASE_URL,
@@ -16,9 +14,6 @@ const axiosClient = axios.create({
 		'Content-Type': 'application/json',
 	},
 });
-
-
-
 
 export function performLogin(user){
 	return dispatch => {
@@ -31,14 +26,12 @@ export function performLogin(user){
 	}
 }
 
-
 export function performLoginSucess(data){
 	return{
 		type: PERFORM_LOGIN_SUCCESS,
 		payload: data,
 	};
 }
-
 
 export function performLoginFail(data){
 	return{
@@ -49,7 +42,6 @@ export function performLoginFail(data){
 		},
 	};
 }
-
 
 export function onUsernameChange(username){
 	return{
@@ -64,6 +56,3 @@ export function onPasswordChange(password){
 		payload: {password: password}
 	};
 }
-
-
-

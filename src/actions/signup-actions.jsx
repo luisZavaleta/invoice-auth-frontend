@@ -18,8 +18,6 @@ const axiosClient = axios.create({
 	},
 });
 
-
-
 export function createUserSucceeded(user){
 	return{
 		type: CREATE_USER_SUCCEEDED,
@@ -27,14 +25,12 @@ export function createUserSucceeded(user){
 	};
 }
 
-
 export function createUserFailed(user, error){
 	return{
 		type: CREATE_USER_FAILED,
 		payload: {user, error}
 	};
 }
-
 
 export function createNewUser(user){
 
@@ -48,7 +44,6 @@ export function createNewUser(user){
 	}
 }
 
-
 export function onFirstNameChange(firstName){
 	
 	return{
@@ -57,14 +52,12 @@ export function onFirstNameChange(firstName){
 	};
 }
 
-
 export function onLastNameChange(lastName){
 	return{
 		type: ON_LASTNAME_CHANGE,
 		payload: {lastName: lastName},
 	};
 }
-
 
 export function onUserNameChange(userName){
 	return{
@@ -79,7 +72,6 @@ export function onPasswordChange(password){
 		payload: {password: password},
 	};
 }
-
 
 export function onConfirmPasswordChange(confirmPassword){
 	return{

@@ -16,7 +16,6 @@ const axiosClient = axios.create({
 	},
 });
 
-
 export function onChangePasswordConstruct(token, username){
 	return{
 		type: ON_CHANGE_PASSWORD_CONSTRUCT,
@@ -58,8 +57,6 @@ export function onChangePasswordSubmit(resetPassword){
 	}
 }
 
-
-
 export function onChangePasswordSuccess(data){
 
 	return{
@@ -70,7 +67,6 @@ export function onChangePasswordSuccess(data){
 			status: data.status
 		}
 	};
-
 }
 
 export function onChangePasswordFail(data){
@@ -85,23 +81,3 @@ export function onChangePasswordFail(data){
 	};
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

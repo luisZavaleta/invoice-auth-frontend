@@ -24,15 +24,12 @@ import {containsErrorOnField, passwordsMatchError }from "../../utils/utils"
 import { Redirect } from 'react-router-dom'
 
 
-
 class SignIn extends Component{
-
 
   onCreateUser = (e) =>{
     e.preventDefault(); 
     this.props.dispatch(createNewUser(this.props.user));
   }
-
 
   onFirstNameBlur = (e) => {
     this.props.dispatch(onFirstNameChange(e.target.value));
@@ -59,7 +56,6 @@ class SignIn extends Component{
       return <Redirect to='/signinsucess' />
     }
   }
-
 
   render(){
 

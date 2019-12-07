@@ -7,8 +7,7 @@ import {
 		ON_PASSWORD_CHANGE,
 		ON_CONFIRMPASSWORD_CHANGE
 
-	} from '../actions/signup-actions';
-
+} from '../actions/signup-actions';
 
 import {
 	ON_LOGIN_EMAIL_CHANGE,
@@ -22,7 +21,6 @@ import {
 	ON_FORGOT_PASSWORD_SUCCESS,
 	ON_FORGOT_PASSWORD_FAIL
 } from '../actions/forgot-password-actions';
-
 
 import {
 	ON_CHANGE_PASSWORD_CONSTRUCT,
@@ -38,9 +36,6 @@ import {
 	ON_RESEND_VALIDATION_MAIL_SUCCESS,
 	ON_RESEND_VALIDATION_MAIL_FAIL
 } from '../actions/validate-mail-actions';
-
-
-
 
 
 function reducer(state, action){
@@ -186,7 +181,7 @@ function reducer(state, action){
 			};	
 
 		case ON_LOGIN_EMAIL_CHANGE:	
-		return 	{
+			return 	{
 				...state,
 				login: {
 					...state.login,
@@ -197,9 +192,10 @@ function reducer(state, action){
 				}
 			};	
 
+
 		case ON_LOGIN_PASSWORD_CHANGE:	
-		return 	{
-			...state,
+			return 	{
+				...state,
 				login: {
 					...state.login,
 					user: {
@@ -211,32 +207,33 @@ function reducer(state, action){
 
 
 		case PERFORM_LOGIN_SUCCESS:	
-		return 	{
-			...state,
-			login: {
-				...state.login,
-				status: payload.status,
-				token: payload.token,
-				message: '',
-			}
-		};
+			return 	{
+				...state,
+				login: {
+					...state.login,
+					status: payload.status,
+					token: payload.token,
+					message: '',
+				}
+			};
 
 
 		case PERFORM_LOGIN_FAIL:	
 		return 	{
 			...state,
-				login: {
-					...state.login,
-					status: payload.status,
-					message: payload.message,
-					token: '',
-					user: {
-						...state.login.user,
-						password: ''
-					}
-
+			login: {
+				...state.login,
+				status: payload.status,
+				message: payload.message,
+				token: '',
+				user: {
+					...state.login.user,
+					password: ''
 				}
-			};	
+
+			}
+		};	
+
 
 		case ON_FORGOT_PASSWORD_USERNAME_CHANGE:
 		return {
@@ -245,7 +242,7 @@ function reducer(state, action){
 				...state.forgotPassword,
 				username: payload.username
 			}
-		}
+		};
 
 		case ON_FORGOT_PASSWORD_SUCCESS:
 
@@ -256,7 +253,8 @@ function reducer(state, action){
 				username: payload.username,
 				enable: payload.enable
 			}
-		}
+		};
+
 
 		case ON_FORGOT_PASSWORD_FAIL:
 		return {
@@ -266,7 +264,8 @@ function reducer(state, action){
 				username: '',
 				enable: ''
 			}
-		}
+		};
+
 
 		case ON_CHANGE_PASSWORD_CONSTRUCT:
 			return {
@@ -277,7 +276,8 @@ function reducer(state, action){
 					username: payload.username
 					
 				}
-			}
+			};
+
 
 		case ON_CHANGE_PASSWORD_PASSWORD_CHANGE:
 			return {
@@ -286,7 +286,7 @@ function reducer(state, action){
 					...state.resetPassword,
 					password: payload.password
 				}
-			}
+			};
 
 
 		case ON_CHANGE_PASSWORD_CONFIRM_PASSWORD_CHANGE:
@@ -296,7 +296,7 @@ function reducer(state, action){
 					...state.resetPassword,
 					confirmPassword: payload.confirmPassword
 				}
-			}
+			};
 
 		case ON_CHANGE_PASSWORD_SUCESS:
 			return {
@@ -311,7 +311,7 @@ function reducer(state, action){
 					errorCount: 0,
 					errors: []
 				}
-			}
+			};
 
 
 		case ON_CHANGE_PASSWORD_FAIL:
@@ -325,7 +325,7 @@ function reducer(state, action){
 					errorCount: payload.errorCount,
 					errors: payload.errors
 				}
-			}
+			};
 
 		case ON_VALIDATE_MAIL_SUCCESS:
 			return {
@@ -333,7 +333,7 @@ function reducer(state, action){
 				validateMail: {
 					message: payload.message
 				}
-			}
+			};
 
 		case ON_VALIDATE_MAIL_FAIL:
 			return {
@@ -341,24 +341,21 @@ function reducer(state, action){
 				validateMail: {
 					message: payload.message
 				}
-			}
+			};
 
 		case ON_RESEND_VALIDATION_MAIL_SUCCESS:
 			return {
 				...state,
 				resendValidationMailMessage: payload.message
-			}
+			};
 
 
 		case ON_RESEND_VALIDATION_MAIL_FAIL:
 			return {
 				...state,
 				resendValidationMailMessage: payload.message
-			}
-
-
-
-
+			};
+			
 		default:
 			return state;
 

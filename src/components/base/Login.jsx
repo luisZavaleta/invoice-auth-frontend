@@ -23,7 +23,6 @@ import {
 import { onResendValidationMail } from "../../actions/validate-mail-actions";
 
 
-
 class Login extends Component{
 
 
@@ -35,20 +34,15 @@ class Login extends Component{
     this.props.dispatch(onPasswordChange(e.target.value));
   };
 
-
   performLogin = (e) => {
     e.preventDefault(); 
     this.props.dispatch(performLogin(this.props.login.user));
   };
 
-
-
   onResendValidationMail = (e) => {
     e.preventDefault();
     this.props.dispatch(onResendValidationMail(this.props.login.user.username));
   };
-
-
 
   getResendValidationMailLink = (e) => {
     return   <Grid item xs={12} bgcolor="primary.main" >
@@ -66,8 +60,6 @@ class Login extends Component{
   }
 
 
-
-
   render(){
 
     const { classes } = this.props;
@@ -83,8 +75,6 @@ class Login extends Component{
           Log in into your account.
         </Typography>
         <form className={classes.form} noValidate>
-        
-       
             <Grid item xs={12}>
               <TextField
                 variant="standard"
@@ -135,41 +125,36 @@ class Login extends Component{
 
               {this.props.resendValidationMailMessage}
 
-            
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={(e) => this.performLogin(e)}
+            >
+              Log In
+            </Button>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link  to="/signup" variant="body2">
+                    Do not have an acount yet? Sign up.
+                </Link>
+              </Grid>
 
-
-          
-        
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={(e) => this.performLogin(e)}
-          >
-            Log In
-          </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link  to="/signup" variant="body2">
-                  Do not have an acount yet? Sign up.
-              </Link>
+              <Grid item style={{"margin-top":"10px"}}>
+                <Link to="/forgotpassword" variant="body2">
+                    Forgot your password? Change Password.
+                </Link>
+              </Grid>
             </Grid>
-
-            <Grid item style={{"margin-top":"10px"}}>
-              <Link to="/forgotpassword" variant="body2">
-                  Forgot your password? Change Password.
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
       <Box mt={5}>
         <Copyright />
       </Box>
     </Container>
-  );
+    );
   }
 }
 

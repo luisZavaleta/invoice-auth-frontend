@@ -4,7 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -130,8 +130,14 @@ class ForgotPassword extends Component{
               </Button>
               <Grid container justify="flex-end">
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    Do no have ane acount yet? Sign up
+                  <Link to="/signup" variant="body2">
+                    Do not have an acount yet? Sign up
+                  </Link>
+                </Grid>
+
+                <Grid style={{"margin-top":"10px"}} >
+                  <Link to="/login" variant="body2">
+                    Do you remember your password? Log In.
                   </Link>
                 </Grid>
               </Grid>

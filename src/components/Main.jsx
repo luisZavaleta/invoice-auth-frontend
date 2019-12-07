@@ -20,7 +20,7 @@ class Main extends Component{
 			<BrowserRouter>
 				<Switch>
 			  		<Container component="main" maxWidth="xs">
-			  			<Route path="/signin" component={SignIn}/>
+			  			<Route path="/signup" component={SignIn}/>
 			  			<Route path="/signinsucess" component={SignInSucessful}/>
 			  			<Route path="/login" component={LogIn}/>
 			  			<Route path="/changepassword/:token/:username" component={ChangePassword}/>

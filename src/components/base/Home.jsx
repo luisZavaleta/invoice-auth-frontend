@@ -24,7 +24,7 @@ import axios from 'axios';
 
 
 
-class ValidateMail extends Component{
+class Home extends Component{
 
 
      API_BASE_URL = process.env.REACT_APP_BASE_PATH;
@@ -134,8 +134,8 @@ class ValidateMail extends Component{
   }
 }
 
-ValidateMail.propTypes = {
+Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default  withStyles(singInStyles)(ValidateMail);
+export default  withStyles(singInStyles)(Home);

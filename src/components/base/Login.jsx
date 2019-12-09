@@ -36,7 +36,7 @@ class Login extends Component{
 
   performLogin = (e) => {
     e.preventDefault(); 
-    this.props.dispatch(performLogin(this.props.login.user));
+    this.props.dispatch(performLogin(this.props.login.user, this.props.cookies));
   };
 
   onResendValidationMail = (e) => {
@@ -63,6 +63,7 @@ class Login extends Component{
   render(){
 
     const { classes } = this.props;
+
 
     return (
     <Container component="main" maxWidth="xs">
@@ -136,17 +137,27 @@ class Login extends Component{
               Log In
             </Button>
             <Grid container justify="flex-end">
-              <Grid item>
-                <Link  to="/signup" variant="body2">
-                    Do not have an acount yet? Sign up.
+             
+              <Grid item xs={12}>
+                <Link  to="/signup" variant="body2" >
+                    Do not have an acount yet? Sign up. a
                 </Link>
               </Grid>
 
-              <Grid item style={{"margin-top":"10px"}}>
+              <Grid item style={{"margin-top":"10px"}} xs={12}>
                 <Link to="/forgotpassword" variant="body2">
-                    Forgot your password? Change Password.
+                    Forgot your password? Change Password. a
                 </Link>
               </Grid>
+              
+
+              <Grid item style={{"margin-top":"10px"}} xs={12}>
+                <Link to="/" variant="body2">
+                    TEST 
+                </Link>
+              </Grid>
+
+
             </Grid>
         </form>
       </div>

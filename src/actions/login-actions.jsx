@@ -15,11 +15,16 @@ const axiosClient = axios.create({
 	},
 });
 
-export function performLogin(user){
+export function performLogin(user, cookies){
+
+
 	return dispatch => {
 		axiosClient.post(API_BASE_URL + "/authenticate", user)
 			.then(resp =>{
+				
+				cookies.set('token', resp.data.token)
 				dispatch(performLoginSucess(resp.data));
+
 			}).catch(error => {
     			dispatch(performLoginFail(error.response.data));
 			});

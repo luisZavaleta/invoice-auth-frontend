@@ -1,12 +1,11 @@
 import {connect} from "react-redux";
-import Login from "../base/Login"
+import Home from "../base/Home"
 
 function mapStateToProps(state, ownProps){
 	return {
 		login : state.login,
-		resendValidationMailMessage : state.resendValidationMailMessage,
 		cookies: ownProps.cookies
 	};
 }
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(Home);
